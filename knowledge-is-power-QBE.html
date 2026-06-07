@@ -21,7 +21,9 @@
     html, body { height: 100%; overflow: hidden; }
 
     /* ── Slide engine (verbatim pattern from canonical composer) ─────── */
-    .slide-deck { width: 100vw; height: 100vh; position: relative; }
+    /* 100dvh tracks the actual visible viewport on mobile (excluding URL bar);
+       100vh is kept as a fallback for older browsers via CSS cascading. */
+    .slide-deck { width: 100vw; height: 100vh; height: 100dvh; position: relative; }
     .slide {
       position: absolute; inset: 0;
       overflow-y: auto;
@@ -33,7 +35,7 @@
     .slide-body { max-width: 1080px; margin: 0 auto; padding: 68px 48px 64px; }
     .slide-body .section-sub { margin-bottom: 30px; }
     .slide-hero { padding-top: 0; }
-    .slide-hero .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px clamp(20px, 4vw, 48px) 80px; }
+    .slide-hero .hero { min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; padding: 120px clamp(20px, 4vw, 48px) 80px; }
 
     /* ── Co-brand pill ───────────────────────────────────────────────── */
     .cobrand-pill {
@@ -251,7 +253,7 @@
     .either-b strong { color: var(--text); font-weight: 700; }
 
     /* ── Slide 8 · Closing (dark, hero question) ─────────────────────── */
-    .slide-close { min-height: 100vh; background: var(--grad-evening); display: flex; align-items: center; position: relative; overflow: hidden; }
+    .slide-close { min-height: 100vh; min-height: 100dvh; background: var(--grad-evening); display: flex; align-items: center; position: relative; overflow: hidden; }
     .slide-close::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--sf-blue-m); }
     .close-inner { max-width: 1000px; margin: 0 auto; padding: 60px 48px; width: 100%; }
     .close-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sf-blue-l); margin-bottom: 18px; }
