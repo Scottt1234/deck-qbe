@@ -802,12 +802,9 @@
     /* ── Decision slides parked — hidden from the deck for now ───── */
     /* Both terminal slides are kept in the markup so we can bring one
        (or both) back when commercials are nailed. The slide engine
-       filters slides with display:none, so the deck currently ends on
-       slide 8 (Either Way). To re-show:
-         · uncomment the lines below to show both, OR
-         · set one to display:block and use <html data-ask="license|pov"> */
-    .terminal-license { display: none; }
-    .terminal-pov { display: none; }
+       skips slides with the .deck-hidden class. To re-show, remove
+       the class from the markup (or both) and decide which terminal to keep. */
+    .deck-hidden { display: none; }
   </style>
 
   <!-- ════════ BLACK BOX VISUAL — workstation reveal ════════ -->
@@ -1301,7 +1298,7 @@
     </div>
 
     <!-- ═══ SLIDE 10A · DECISION — Path A · LICENSE-DIRECT (default) ═ -->
-    <div class="slide terminal-license" data-section="The Decision">
+    <div class="slide terminal-license deck-hidden" data-section="The Decision">
       <div class="slide-close">
         <div class="close-inner">
           <div class="close-eyebrow" data-animate="fade-up" data-anim-delay="0">The decision</div>
@@ -1355,7 +1352,7 @@
     </div>
 
     <!-- ═══ SLIDE 10B · DECISION — Path B · PoV-FIRST (toggle via data-ask="pov" on <html>) ═══ -->
-    <div class="slide terminal-pov" data-section="The Decision">
+    <div class="slide terminal-pov deck-hidden" data-section="The Decision">
       <div class="slide-close">
         <div class="close-inner">
           <div class="close-eyebrow" data-animate="fade-up" data-anim-delay="0">The decision</div>
@@ -1404,7 +1401,9 @@
   <script>
     // Filter to visible slides only — hides whichever terminal variant (Path A / Path B)
     // is set to display:none by the data-ask attribute on <html>
-    const slides = [...document.querySelectorAll('.slide')].filter(s => getComputedStyle(s).display !== 'none');
+    // Filter by class (not computed display) so the mobile media query that hides
+     // inactive slides via `display: none` doesn't accidentally remove them from the deck.
+    const slides = [...document.querySelectorAll('.slide:not(.deck-hidden)')];
     const dotsEl = document.getElementById('dots');
     const counterEl = document.getElementById('counter');
     const prevBtn = document.getElementById('prev');
