@@ -43,6 +43,26 @@
     }
     .slide.active { opacity: 1; pointer-events: all; touch-action: pan-y; }
 
+    /* Mobile: ditch the absolute-positioned overlay layout (which iOS Safari struggles
+       to scroll inside) and use natural document flow. Active slide flows in body,
+       inactive slides are display:none, body scrolls naturally with full iOS support. */
+    @media (max-width: 900px) {
+      html { height: auto; }
+      body {
+        height: auto; position: static;
+        overflow: auto; -webkit-overflow-scrolling: touch;
+      }
+      .slide-deck { height: auto; min-height: 100dvh; }
+      .slide {
+        position: relative; inset: auto;
+        height: auto; min-height: 100dvh;
+        overflow: visible; transition: none;
+      }
+      .slide:not(.active) { display: none; }
+      .slide.active { opacity: 1; }
+      /* Reset scroll to top whenever a new slide becomes active. Handled in JS — see go(). */
+    }
+
     .slide-body { max-width: 1080px; margin: 0 auto; padding: 68px 48px 64px; }
     .slide-body .section-sub { margin-bottom: 30px; }
     .slide-hero { padding-top: 0; }
@@ -1406,6 +1426,8 @@
       current = Math.max(0, Math.min(n, slides.length - 1));
       slides[current].classList.add('active');
       slides[current].scrollTop = 0;
+      // Mobile uses body scroll (see media query) — reset window scroll on every slide change.
+      window.scrollTo(0, 0);
       document.querySelectorAll('.dot')[current].classList.add('active');
       counterEl.textContent = `${current + 1} / ${slides.length}`;
       const sec = slides[current].dataset.section || '';
