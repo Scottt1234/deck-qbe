@@ -18,7 +18,16 @@
     /* ── Slide 1 hero eyebrow rule — Salesforce Electric Blue 50 ── */
     .hero-eyebrow::before { background: var(--sf-blue-m); }
 
-    html, body { height: 100%; overflow: hidden; }
+    html { height: 100%; }
+    /* iOS Safari: position:fixed on body keeps it from being a touch target
+       that swallows scroll events meant for absolute-positioned slide children. */
+    body {
+      height: 100%;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
 
     /* ── Slide engine (verbatim pattern from canonical composer) ─────── */
     /* 100dvh tracks the actual visible viewport on mobile (excluding URL bar);
@@ -27,10 +36,12 @@
     .slide {
       position: absolute; inset: 0;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;     /* legacy iOS momentum scroll */
+      overscroll-behavior: contain;          /* don't bubble scroll to body */
       opacity: 0; pointer-events: none;
       transition: opacity 0.4s ease;
     }
-    .slide.active { opacity: 1; pointer-events: all; }
+    .slide.active { opacity: 1; pointer-events: all; touch-action: pan-y; }
 
     .slide-body { max-width: 1080px; margin: 0 auto; padding: 68px 48px 64px; }
     .slide-body .section-sub { margin-bottom: 30px; }
