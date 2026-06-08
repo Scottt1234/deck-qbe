@@ -60,13 +60,6 @@
        anchored top-left in a 1080px centered column like slide-body does. */
     #caption { position: fixed; top: 0; left: 0; right: 0; z-index: 5; pointer-events: none; }
     #caption > .inner { max-width: 1080px; margin: 0 auto; padding: 56px 48px 0; text-align: left; }
-    /* Static framing question — sits above the cycling captions to set up the slide */
-    #cap-frame {
-      font-family: var(--font-body);
-      font-size: clamp(22px, 2.5vw, 30px); font-weight: 700; line-height: 1.15;
-      letter-spacing: -0.02em; color: rgba(255,255,255,0.92);
-      margin: 0 0 18px;
-    }
     #cap-eyebrow {
       font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--sf-blue-l); margin-bottom: 10px;
@@ -124,7 +117,6 @@
   </div>
   <div id="caption">
     <div class="inner">
-      <div id="cap-frame">How does QBE run today?</div>
       <div id="cap-eyebrow"></div>
       <h1 id="cap-title"></h1>
       <p id="cap-sub"></p>
