@@ -701,10 +701,12 @@
     .ev-logos.ev-logos-lead { padding-top: 0; border-top: 0; }
     .ev-logos-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 18px; }
     .ev-logo-row { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .ev-logo-row + .ev-logo-row { margin-top: 22px; }   /* gap between the two rows */
     .ev-logo { width: auto; opacity: 0.92; object-fit: contain; }
     .ev-logo.assurant   { height: 62px; }
     .ev-logo.westpac    { height: 34px; }
     .ev-logo.nab        { height: 50px; }
+    .ev-logo.anz        { height: 56px; }
     .ev-logo.topdanmark { height: 130px; filter: brightness(0) invert(1); }
     .ev-logo.capricorn  { height: 74px; filter: brightness(0) invert(1); }
     @media (max-width: 760px) { .ev-logo-row { gap: 24px; } }
@@ -805,6 +807,29 @@
        skips slides with the .deck-hidden class. To re-show, remove
        the class from the markup (or both) and decide which terminal to keep. */
     .deck-hidden { display: none; }
+  </style>
+
+  <!-- ════════ BRIDGE SLIDE — pivot from "the problem" to "the answer" ════════ -->
+  <style>
+    .bridge-slide .slide-body {
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      min-height: 100dvh; text-align: center; padding: 80px 48px;
+    }
+    .bridge-inner { max-width: 880px; }
+    .bridge-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--sf-blue-l); margin-bottom: 18px;
+    }
+    .bridge-title {
+      font-family: var(--font-body);
+      font-size: clamp(28px, 3.4vw, 44px); font-weight: 700; line-height: 1.2;
+      letter-spacing: -0.025em; color: #fff; margin: 0 0 24px;
+    }
+    .bridge-sub {
+      font-size: clamp(18px, 2vw, 24px); font-weight: 600; line-height: 1.45;
+      color: rgba(255,255,255,0.78); margin: 0;
+    }
+    .bridge-sub .hl { color: var(--sf-blue-l); font-weight: 700; }
   </style>
 
   <!-- ════════ BLACK BOX VISUAL — workstation reveal ════════ -->
@@ -1109,6 +1134,16 @@
 
     <!-- ("The Black Box" cut - Process Reality + Layers cover the same ground without the animation overlap) -->
 
+    <!-- ═══ SLIDE 5 · THE ANSWER — bridge from Process Reality to PI Layers ═══ -->
+    <div class="slide sd bridge-slide" data-section="The Answer">
+      <div class="slide-body">
+        <div class="bridge-inner">
+          <h2 class="bridge-title" data-animate="fade-up" data-anim-delay="0">How do we optimize our processes<br/><span style="color:var(--sf-blue-l)">despite this complexity?</span></h2>
+          <p class="bridge-sub" data-animate="fade-up" data-anim-delay="120">The answer is <span class="hl">Apromore Process Intelligence.</span></p>
+        </div>
+      </div>
+    </div>
+
     <!-- ═══ THE LAYERS · PROCESS INTELLIGENCE — living pipeline (bold/dark) ═══ -->
     <div class="slide slide-pi" data-section="The Layers · v3">
       <div class="slide-body">
@@ -1197,6 +1232,9 @@
             <img class="ev-logo topdanmark" src="assets/logos/topdanmark.png" alt="Topdanmark" />
             <img class="ev-logo capricorn"  src="assets/logos/capricorn.png"  alt="Capricorn Society Limited" />
             <img class="ev-logo assurant"   src="assets/logos/assurant.png"   alt="Assurant" />
+          </div>
+          <div class="ev-logo-row">
+            <img class="ev-logo anz"        src="assets/logos/anz.png"        alt="ANZ" />
             <img class="ev-logo westpac"    src="assets/logos/westpac.png"    alt="Westpac" />
             <img class="ev-logo nab"        src="assets/logos/nab.png"        alt="NAB" />
           </div>
@@ -1292,7 +1330,7 @@
         </div>
 
         <div data-animate="fade-up" data-anim-delay="360">
-          <div class="statement">Either way, you win. Both outcomes come from the same source: <span class="hl">understanding what is actually happening inside QBE.</span></div>
+          <div class="statement">Either way, you win. Both outcomes come from the same source: <span class="hl">understanding what is actually happening inside QBE, using your data &amp; AI.</span></div>
         </div>
       </div>
     </div>
