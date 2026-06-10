@@ -88,6 +88,16 @@
     .stat .v.hot { color: var(--sf-blue-l); }
     .stat .k { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 7px; }
 
+    /* Discrete caveat — sits at the right of the stats row, mirroring the column's
+       left-anchored stat labels but on the opposite side. Same vertical level as the
+       Commercial Submissions stat, never obscured by the deck nav. */
+    #caveat {
+      margin-left: auto; align-self: center;
+      font-size: 11px; font-style: italic; letter-spacing: 0.02em;
+      color: rgba(255,255,255,0.45);
+      pointer-events: none;
+    }
+
     /* Trace UI */
     #tracehint { position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%); z-index: 6; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.92); background: rgba(0,10,31,0.78); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.18); padding: 9px 18px; border-radius: 24px; display: none; pointer-events: none; box-shadow: 0 6px 24px rgba(0,0,0,0.4); }
     #tracehint b { color: var(--sf-blue-l); }
@@ -127,6 +137,7 @@
     <div class="stat"><div class="v" id="s-cases">0</div><div class="k">Commercial submissions</div></div>
     <div class="stat"><div class="v" id="s-variants">1</div><div class="k">Distinct variants</div></div>
     <div class="stat"><div class="v" id="s-paths">7</div><div class="k">Connections</div></div>
+    <div id="caveat">Numbers are indicative only</div>
   </div>
 
   <div id="tracehint"><b>Click any case</b> to trace its real journey →</div>
